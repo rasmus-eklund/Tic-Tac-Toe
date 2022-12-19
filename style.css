@@ -5,9 +5,16 @@
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+button {
+    margin-top: 10%;
+    padding: 10px 40px;
+    font-size: 1em;
 }
 
 .board {
@@ -28,3 +35,12 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.board div>p {
+    font-size: 6em;
+}
+
+.board div>p:hover {
+    cursor: default;
+}
+
