@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <title>Tic Tac Toe</title>
+    <title>Tic-Tac-Toe</title>
 </head>
+
 <body>
-    <div class="board">
-    </div>
-    <button>Reset</button>
+    <form action="">
+        <div class="inside">
+            <div>
+                <label for="p1">Player 1</label>
+                <input id="p1" type="text">
+            </div>
+            <div>
+                <label for="p2">Computer</label>
+                <input type="checkbox" name="computer" id="p1">
+            </div>
+        </div>
+        <div class="inside">
+            <div>
+                <label for="p2">Player 2</label>
+                <input id="p2" type="text">
+            </div>
+            <div>
+                <label for="p2">Computer</label>
+                <input type="checkbox" name="computer" id="p2">
+            </div>
+        </div>
+        <input class="start" type="button" value="Start">
+    </form>
+    <p class="result"></p>
+    <div class="board"></div>
+    <button class="reset">Reset</button>
 </body>
+
 </html>

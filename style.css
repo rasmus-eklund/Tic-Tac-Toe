@@ -11,10 +11,23 @@ body {
     height: 100vh;
 }
 
-button {
-    margin-top: 10%;
+.reset {
     padding: 10px 40px;
-    font-size: 1em;
+    margin: 5% 0;
+    font-size: 2em;
+    visibility: hidden;
+}
+
+.inside {
+    display: flex;
+    gap: 20px;
+}
+
+.result {
+    font-size: 5em;
+    height: 10%;
+    width: 100%;
+    text-align: center;
 }
 
 .board {
@@ -24,6 +37,7 @@ button {
     height: 40vh;
     width: 40vh;
     align-items: center;
+    visibility: hidden;
 }
 
 .board>div {
@@ -43,4 +57,3 @@ button {
 .board div>p:hover {
     cursor: default;
 }
-
