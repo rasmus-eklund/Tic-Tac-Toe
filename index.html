@@ -14,29 +14,32 @@
     <form action="">
         <div class="inside">
             <div>
-                <label for="p1">Player 1</label>
-                <input id="p1" type="text">
+                <label for="p1Name">Player 1</label>
+                <input id="p1Name" type="text">
             </div>
             <div>
-                <label for="p2">Computer</label>
-                <input type="checkbox" name="computer" id="p1">
+                <label for="p1Human">Computer</label>
+                <input type="checkbox" name="computer" id="p1Human">
             </div>
         </div>
         <div class="inside">
             <div>
-                <label for="p2">Player 2</label>
-                <input id="p2" type="text">
+                <label for="p2Name">Player 2</label>
+                <input id="p2Name" type="text">
             </div>
             <div>
-                <label for="p2">Computer</label>
-                <input type="checkbox" name="computer" id="p2">
+                <label for="p2Human">Computer</label>
+                <input type="checkbox" name="computer" id="p2Human">
             </div>
         </div>
         <input class="start" type="button" value="Start">
     </form>
     <p class="result"></p>
     <div class="board"></div>
-    <button class="reset">Reset</button>
+    <div class="buttons">
+        <button class="reset">Reset board</button>
+        <button class="stop">Restart</button>
+    </div>
 </body>
 
 </html>

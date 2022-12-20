@@ -40,9 +40,17 @@ const displayController = (() => {
     const board = document.querySelector('.board');
     const resetButton = document.querySelector('button');
     const result = document.querySelector('.result');
+    const stopButton = document.querySelector('.stop')
     const startButton = document.querySelector('.start');
+    const form = document.querySelector('form');
+    const buttons = document.querySelector('.buttons');
+    const player1Name = document.querySelector('#p1Name');
+    const player2Name = document.querySelector('#p2Name');
+    const player1Human = document.querySelector('#p1Human')
+    const player2Human = document.querySelector('#p2Human')
 
     startButton.onclick = start;
+    stopButton.onclick = stop;
 
     for (let square = 0; square < 9; square++) {
         const div = document.createElement('div');
@@ -52,44 +60,47 @@ const displayController = (() => {
         board.appendChild(div);
     }
 
-    function loopOverChildren(callback) {
+    function loopOverFields(callback) {
         [...board.children].forEach(div => callback(div))
     }
 
     function addEvents() {
-        loopOverChildren((div) => div.addEventListener('click', setMark));
+        loopOverFields((div) => div.addEventListener('click', setMark));
         resetButton.onclick = reset;
     }
 
     function removeEvents() {
-        loopOverChildren((div) => div.removeEventListener('click', setMark));
+        loopOverFields((div) => div.removeEventListener('click', setMark));
         resetButton.removeEventListener('click', reset);
     }
 
     function render() {
         let i = 0;
-        loopOverChildren((div) => div.children[0].textContent = gameBoard.getMark(i++));
+        loopOverFields((div) => div.children[0].textContent = gameBoard.getMark(i++));
     };
     function setMark() {
         gameLogic.makeMove(this.id);
     }
     const highLightWin = function (arr, color) {
         let i = 0;
-        loopOverChildren((div) => {
+        loopOverFields((div) => {
             if (arr.includes(i++)) {
                 div.children[0].style.color = color;
             }
         });
     }
-    function start(){
-        resetButton.style.visibility = 'visible';
+    function start() {
+        buttons.style.visibility = 'visible';
         board.style.visibility = 'visible';
         result.style.visibility = 'visible';
         addEvents();
-        startButton.style.visibility = 'hidden';
+        form.style.visibility = 'hidden';
+        gameLogic.setPlayers(players('X', player1Name.value, player1Human.value),
+        players('O', player2Name.value, player2Human.value))
     };
-    const stop = () => {
-        resetButton.style.visibility = 'hidden';
+    function stop() {
+        form.style.visibility = 'visible'
+        buttons.style.visibility = 'hidden';
         board.style.visibility = 'hidden';
         result.style.visibility = 'hidden';
         removeEvents();
@@ -101,15 +112,19 @@ const displayController = (() => {
         gameBoard.reset();
         gameLogic.reset();
         render();
-        loopOverChildren((div) => div.children[0].style.color = 'black')
+        loopOverFields((div) => div.children[0].style.color = 'black')
         showResult('')
     }
     return { render, highLightWin, start, stop, showResult, reset }
 })();
 
 const gameLogic = (() => {
-    const allPlayers = [players('X', 'Emil', true), players('O', 'Computer', false)]
+    let allPlayers = []; // [players('X', 'Emil', true), players('O', 'Computer', false)]
     let turn = 1;
+
+    const setPlayers = function (player1, player2){
+        allPlayers = [player1, player2];
+    }
 
     const makeMove = function (position) {
         currentPlayer = allPlayers[Math.abs((turn % 2) - 1)]
@@ -132,5 +147,5 @@ const gameLogic = (() => {
     }
 
     const reset = () => turn = 1;
-    return { makeMove, reset }
+    return { makeMove, reset, setPlayers }
 })();
